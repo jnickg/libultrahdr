@@ -50,12 +50,12 @@ endif()
 ###########################################################
 # Directories
 ###########################################################
-set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib)
-set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
-set(TESTS_DIR ${CMAKE_SOURCE_DIR}/tests)
-set(BENCHMARK_DIR ${CMAKE_SOURCE_DIR}/benchmark)
-set(FUZZERS_DIR ${CMAKE_SOURCE_DIR}/fuzzer)
-set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/examples)
+set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib)
+set(THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
+set(TESTS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
+set(BENCHMARK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/benchmark)
+set(FUZZERS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/fuzzer)
+set(EXAMPLES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/examples)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_CURRENT_BINARY_DIR)
   message(WARNING "Selected in-source build. Preferably, create a build/ directory and build from there.")
@@ -341,7 +341,7 @@ target_include_directories(image_io PRIVATE
 add_library(ultrahdr STATIC ${UHDR_LIB_LIST})
 add_dependencies(ultrahdr ${JPEGTURBO_TARGET_NAME})
 #target_compile_options(ultrahdr PRIVATE -Wall -Wextra -Wpedantic)
-target_include_directories(ultrahdr PRIVATE
+target_include_directories(ultrahdr PUBLIC
   ${COMMON_INCLUDE_LIST}
   "${THIRD_PARTY_DIR}/image_io/includes/"
 )
